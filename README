@@ -1,0 +1,13 @@
+# Work sample
+When all required tools are installed run `make init` in [root](./) directory. This will install all node modules and also all composer packages.
+## Frontend
+The frontend requires node v18.18.1
+
+To start the frontend run `make frontend` in the [root](./) directory.
+## Backend
+The backend requires php@7.4 and both composer version 2 and symfony cli installed.
+
+To start the backend run `make backend` in the [root](./) directory.
+
+## Assignment
+The frontend and backend should continue to remain in separate solutions.
