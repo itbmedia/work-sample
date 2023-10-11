@@ -1,7 +1,7 @@
 init:
 	npm install ./frontend
 	composer install --working-dir=./backend
-run-frontend:
+frontend:
 	npm start --prefix frontend
-run-backend:
-	symfony  --dir=./backend server:start
+backend:
+	symfony --dir=./backend server:start
