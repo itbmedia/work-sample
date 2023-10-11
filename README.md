@@ -24,5 +24,5 @@ In the list below you find the assignments. There is a boiler plate created. All
 5. Create an entity to manage user notes on the book using the appropriate relationship.
 6. Create DTO objects if necessary.
 
-# Final words
+## Final words
 We at Logy wishes you good luck and if you have any questions or feedback, don't hesitate to contact us.
