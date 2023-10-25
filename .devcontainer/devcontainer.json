@@ -1,0 +1,83 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/debian
+{
+	"name": "Work Sample",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {
+			"nodeGypDependencies": true,
+			"version": "18",
+			"nvmVersion": "latest"
+		},
+		"ghcr.io/shyim/devcontainers-features/php:0": {
+			"installComposer": true,
+			"version": "7.4"
+		},
+		"ghcr.io/shyim/devcontainers-features/symfony-cli:0": {}
+	},
+	
+	"forwardPorts": [
+		3000,
+		8000
+	],
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"bmewburn.vscode-intelephense-client",
+				"phproberto.vscode-php-getters-setters",
+				"esbenp.prettier-vscode",
+				"meganrogge.template-string-converter",
+				"yoavbls.pretty-ts-errors"
+			],
+			"settings": {
+				"files.watcherExclude": {
+					"**/.git/objects/**": true,
+					"**/.git/subtree-cache/**": true,
+					"**/node_modules/*/**": true,
+					"**/vendor/*/**": true,
+					"**/var/*/**": true,
+					"*.log": true,
+					"*.lock": true,
+					"env-*": true
+				},
+				"search.exclude": {
+					"**/.git/objects/**": true,
+					"**/.git/subtree-cache/**": true,
+					"**/node_modules/*/**": true,
+					"**/vendor/*/**": true,
+					"**/var/*/**": true,
+					"*.log": true,
+					"*.lock": true,
+				},
+				"intelephense.files.exclude": [
+					"**/vendor/**/{Tests,tests}/**",
+					"**/.history/**",
+					"**/node_modules/*/**",
+					"**/var/*/**",
+					"**/public/*/**",
+					"env-*"
+				],
+				"intelephense.files.associations": [
+					"*.php"
+				],
+				"intelephense.completion.maxItems": 50,
+				"intelephense.completion.triggerParameterHints": true,
+				"[javascript]": {
+					"editor.defaultFormatter": "esbenp.prettier-vscode",
+					"editor.formatOnSave": true
+				},
+				"[typescript]": {
+					"editor.defaultFormatter": "esbenp.prettier-vscode",
+					"editor.formatOnSave": true
+				},
+				"[typescriptreact]": {
+					"editor.defaultFormatter": "esbenp.prettier-vscode",
+					"editor.formatOnSave": true
+				}
+			}
+		}
+	}
+}
