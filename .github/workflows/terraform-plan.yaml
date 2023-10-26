@@ -29,9 +29,12 @@ jobs:
           role-to-assume: ${{ secrets.AWS_IAM_ROLE }}
           aws-region: ${{ secrets.AWS_REGION }}
           role-session-name: GITHUB-OIDC-TERRAFORM
-          
-      - name: Caller Identity
-        run: aws sts get-caller-identity
+
+      - name: Confiure kubectl
+        uses: azure/setup-kubectl@v3
+
+      - name: Configure kube manifest
+        run: aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name logy
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
