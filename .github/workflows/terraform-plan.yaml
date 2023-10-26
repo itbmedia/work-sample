@@ -18,7 +18,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./terraform
+        working-directory: .
     steps:
       - name: Git Checkout
         uses: actions/checkout@v3
@@ -37,7 +37,7 @@ jobs:
 
       - name: Terraform format
         id: fmt
-        run: terraform fmt -check
+        run: terraform -chdir=terraform fmt -check
         continue-on-error: true
 
       - name: Terraform Init
@@ -46,15 +46,15 @@ jobs:
           AWS_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET }}
           AWS_BUCKET_KEY_NAME: ${{ github.event.repository.name }}.tfstate
           AWS_REGION: ${{ secrets.AWS_REGION }}
-        run: terraform init -backend-config="bucket=${AWS_BUCKET_NAME}" -backend-config="key=${AWS_BUCKET_KEY_NAME}" -backend-config="region=${AWS_REGION}"
+        run: terraform -chdir=terraform init -backend-config="bucket=${AWS_BUCKET_NAME}" -backend-config="key=${AWS_BUCKET_KEY_NAME}" -backend-config="region=${AWS_REGION}"
 
       - name: Terraform Validate
         id: validate
-        run: terraform validate -no-color
+        run: terraform -chdir=terraform validate -no-color
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color
+        run: terraform -chdir=terraform plan -no-color
         if: github.event_name == 'pull_request'
         continue-on-error: true
 
@@ -101,4 +101,4 @@ jobs:
       
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
+        run: terraform -chdir=terraform apply -auto-approve -input=false
